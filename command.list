@@ -1,0 +1,11 @@
+Get list of IP addresses  from  VMmanager:
+
+  # echo "select name from ips where domain != \"\";" | sqlite3 /usr/local/mgr5/etc/vmmgr_ipdb.db  > list.txt
+
+Copy list.txt from VMmanager to IPmanager
+
+Add all exist IP addresses to IPmanager:
+
+  #  for i in `cat /root/list.txt`; do echo $i;  /usr/local/mgr5/sbin/mgrctl -m ipmgr net.addr.edit domain=free.example.com. mgruser=ID_USER name=$i sok=ok  ; done
+  mgruser  -- user's id
+ 
